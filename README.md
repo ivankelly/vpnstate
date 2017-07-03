@@ -29,3 +29,11 @@ server {
     }
 }
 ```
+
+The pi is configured with an IP on both 192.168.1.0/24 and 192.168.2.0/24. 192.168.1.0/24 is the main home network.
+
+Hosts on 192.168.2.0/24 have the pi address set as the gateway. The pi masquerades all this traffic. IP forward is also enabled.
+
+```
+iptables -t nat -A POSTROUTING -s 192.168.2.0/24 -j MASQUERADE
+```
