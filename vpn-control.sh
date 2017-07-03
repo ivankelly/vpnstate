@@ -34,7 +34,7 @@ start_vpn() {
 
 stop_vpn() {
     echo "Stopping vpn"
-    sudo kill "$(jobs -p)"
+    sudo kill "$(jobs -p)"; wait
 }
 
 NEW=$(curl "$POLL_URL?expected-current=OFF&timeout=0")
