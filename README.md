@@ -15,3 +15,17 @@ bash vpn-control.sh -u http://localhost:3001/poll -v ireland.ovpn
 ```
 
 Both the webapp and the script should be run in a tmux so you don't need to stay logged in. Someday I may do systemd files.
+
+To redirect nginx, use this conf...
+```
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name vpn;
+
+    location / {
+        proxy_pass http://127.0.0.1:3001;
+    }
+}
+```
